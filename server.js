@@ -23,10 +23,10 @@ app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 app.use(express.static('public')); // Serve frontend files from the 'public' folder
 
 // Ensure 'uploads' directory exists
-const uploadDir = 'uploads';
-if (!fs.existsSync(uploadDir)) {
-  fs.mkdirSync(uploadDir);
-}
+const os = require('os');
+
+// Use system temp directory for uploads (required for Vercel/Serverless)
+const uploadDir = os.tmpdir();
 
 // Multer for file handling
 const upload = multer({ dest: uploadDir });
