@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DRT Unified | AI Technical Consultant</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body class="">
+
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon"><i data-lucide="zap"></i></div>
+                <span>Doppio Rocket Tool</span>
+            </div>
+            <label class="switch">
+                <input id="theme-toggle" type="checkbox" checked>
+                <span class="slider">
+                    <div class="star star_1"></div>
+                    <div class="star star_2"></div>
+                    <div class="star star_3"></div>
+                    <svg viewBox="0 0 16 16" class="cloud_1 cloud">
+                        <path transform="matrix(.77976 0 0 .78395-299.99-418.63)" fill="#fff" d="m391.84 540.91c-.421-.329-.949-.524-1.523-.524-1.351 0-2.451 1.084-2.485 2.435-1.395.526-2.388 1.88-2.388 3.466 0 1.874 1.385 3.423 3.182 3.667v.034h12.73v-.006c1.775-.104 3.182-1.584 3.182-3.395 0-1.747-1.309-3.186-2.994-3.379.007-.106.011-.214.011-.322 0-2.707-2.271-4.901-5.072-4.901-2.073 0-3.856 1.202-4.643 2.925"></path>
+                    </svg>
+                </span>
+            </label>
+        </div>
+    </header>
+
+    <main>
+        <!-- Clean Chat View -->
+        <section id="chat-view" class="view clean-layout">
+            <div class="chat-sidebar">
+                <div class="history-label">Consultant History</div>
+                <div id="chat-history">
+                    <div class="history-empty">No recent queries</div>
+                </div>
+            </div>
+
+            <div class="chat-main">
+                <div id="messages">
+                    <div class="hero-section">
+                        <div class="hero-icon"><i data-lucide="sparkles"></i></div>
+                        <h1>What technical challenge are we solving?</h1>
+                        <p>Our AI analyzes your knowledge stores to provide brutally honest Infor M3 guidance.</p>
+                        
+                        <div class="suggested-queries">
+                            <button onclick="fillInput('How do I configure MMS001 for manufactured items?')">MMS001 Configuration</button>
+                            <button onclick="fillInput('Explain the order-to-cash process in M3')">Order-to-Cash Flow</button>
+                            <button onclick="fillInput('Common errors in GLS850 integration')">GLS850 Errors</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-container">
+                    <div class="input-glow-wrapper">
+                        <div class="chat-input-box">
+                            <input type="file" id="chat-file-upload" class="hidden" accept="image/*,.txt,.pdf,.csv" multiple>
+                            <button id="attach-btn" class="icon-btn-minimal" title="Attach image or file"><i data-lucide="paperclip"></i></button>
+                            <div class="input-wrapper">
+                                <div id="file-preview" class="hidden">
+                                    <span id="preview-name">image.png</span>
+                                    <button id="remove-file"><i data-lucide="x"></i></button>
+                                </div>
+                                <textarea id="chat-input" placeholder="Ask anything about Infor M3 documentation..."></textarea>
+                            </div>
+                            <button id="send-btn"><i data-lucide="arrow-up"></i></button>
+                        </div>
+                    </div>
+                    <div class="input-legal">Gemini 2.5 Flash • Smart Store Routing Enabled</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+    <script>
+        lucide.createIcons();
+        function fillInput(text) {
+            const input = document.getElementById('chat-input');
+            input.value = text;
+            input.focus();
+            // Trigger auto-resize if any
+        }
+    </script>
+</body>
+</html>
