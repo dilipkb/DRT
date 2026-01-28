@@ -20,7 +20,12 @@ const ai = new GoogleGenAI({
 app.use(cors());
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
-app.use(express.static('public')); // Serve frontend files from the 'public' folder
+app.use(express.static(path.join(__dirname, 'public'))); // Serve frontend files from the 'public' folder
+
+// Explicitly serve index.html for root route (fix for Vercel)
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 // Ensure 'uploads' directory exists
 const os = require('os');
@@ -312,9 +317,14 @@ app.get('/admin6754', (req, res) => {
 });
 
 // START SERVER
-app.listen(port, () => {
-  console.log('-------------------------------------------');
-  console.log(`DRT Unified Server started on port ${port}`);
-  console.log(`Local link: http://localhost:${port}`);
-  console.log('-------------------------------------------');
-});
+// Only listen if run directly (local dev), otherwise export for Vercel
+if (require.main === module) {
+  app.listen(port, () => {
+    console.log('-------------------------------------------');
+    console.log(`DRT Unified Server started on port ${port}`);
+    console.log(`Local link: http://localhost:${port}`);
+    console.log('-------------------------------------------');
+  });
+}
+
+module.exports = app;
